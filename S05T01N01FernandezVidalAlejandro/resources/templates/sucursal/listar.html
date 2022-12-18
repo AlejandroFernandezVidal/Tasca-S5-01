@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">
+</head>
+<body>
+
+	<header th:replace="plantilla/template :: header"></header>
+	<div class="container">
+		<h1 th:text="${titulo}"></h1>
+	</div>
+	<div class="container">
+
+		<a class="btn btn-primary btn-sm" style="margin: 10px"
+			th:href="@{/sucursal/create}" th:text="'Nueva Sucursal'"
+			title="Crear Nueva Sucursal"> </a> <a class="btn btn-primary btn-sm"
+			style="margin: 10px" th:href="@{/sucursal/update}"
+			th:text="'Actualizar Sucursal'" title="Actualizar Sucursal"> </a>
+		<table class="table">
+			<thead class="table-dark">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Pais</th>
+					<th scope="col">UE</th>
+					<th scope="col">Editar</th>
+					<th scope="col">Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="su:${sucursales}">
+					<th scope="row" th:text="${su.pk_SucursalID}"></th>
+					<td th:text="${su.nomSucursal}"></td>
+					<td th:text="${su.paisSucursal}"></td>
+					<td th:text="${su.tipusSucursal}"></td>
+
+					<td><a class="btn btn-success btn-sm"
+						th:href="@{/sucursal/update/} + ${su.pk_SucursalID}"
+						th:text="'Editar'" title="Editar Sucursal"> </a></td>
+
+					<td><a class="btn btn-danger btn-sm"
+						th:href="@{/sucursal/delete/} + ${su.pk_SucursalID}"
+						th:text="'Eliminar'" title="Eliminar Sucursal"
+						onclick="return confirm('Estás seguro que desea eliminar la Sucursal?');"></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+
+</body>
+</html>
